@@ -4,7 +4,7 @@ const app = express();
 const PORT = process.env.PORT ?? 8080;
 
 app.get("/", (req, res) => {
-	return res.json({ msg: "Hi, this is v2 version !!" });
+	return res.json({ msg: "Hi, this is v3 version !!" });
 });
 
 app.listen(PORT, () => {
