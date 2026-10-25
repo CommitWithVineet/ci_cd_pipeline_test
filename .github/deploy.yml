@@ -1,0 +1,27 @@
+name: Deploy NodeJS Application to Hostinger
+
+on:
+    push:
+        branches:
+            - main
+
+jobs:
+    deploy:
+        runs-on: ubutu-latest
+
+        steps:
+            -name: Checkout Code
+            uses: action/checkout@v4
+
+            -name: Deploy Via SSH
+            uses: appleboy/ssh-action@v1.0.3
+            with: 
+              host: ${{secrets.SSH_HOST}}
+              username: ubuntu
+              key: ${{ssh.SSH_KEY}}
+              script: |
+                cd /home/ubuntu/ci_cd_pipeline_test
+                git pull
+                docker compose up -d --build
+
+            
